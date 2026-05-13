@@ -1,14 +1,29 @@
-# Kafka + C++ on Linux — Practical Cheat Sheet
+# Kafka on Linux — Practical Cheat Sheet
+
+Code samples live under `src/`:
+
+```text
+src/
+└── cpp/      # C++ samples (librdkafka)
+```
+
+More language samples (e.g. Python) may be added over time.
+
+---
 
 ## 0. Install Requirements
 
 ```bash
 sudo apt update
 
-# Java
+# Java (required to run the Kafka broker)
 sudo apt install openjdk-17-jdk -y
+```
 
-# C++ build tools
+### C++ (`src/cpp/`)
+
+```bash
+# Build tools
 sudo apt install build-essential cmake pkg-config -y
 
 # Kafka C/C++ client
@@ -161,18 +176,20 @@ bin/kafka-console-consumer.sh \
 
 ---
 
-# 9. Compile C++ Kafka Program
+# 9. C++ Samples (`src/cpp/`)
+
+## Compile
 
 Using `librdkafka`:
 
 ```bash
-g++ producer.cpp -o producer -lrdkafka++
-g++ consumer.cpp -o consumer -lrdkafka++
+g++ src/cpp/producer.cpp -o producer -lrdkafka++
+g++ src/cpp/consumer.cpp -o consumer -lrdkafka++
 ```
 
 ---
 
-# 10. Run C++ Producer
+## Run Producer
 
 ```bash
 ./producer
@@ -180,7 +197,7 @@ g++ consumer.cpp -o consumer -lrdkafka++
 
 ---
 
-# 11. Run C++ Consumer
+## Run Consumer
 
 ```bash
 ./consumer
@@ -188,7 +205,7 @@ g++ consumer.cpp -o consumer -lrdkafka++
 
 ---
 
-# 12. Typical Terminal Setup
+# 10. Typical Terminal Setup
 
 ## Terminal 1 — Kafka Broker
 
@@ -216,7 +233,7 @@ bin/kafka-server-start.sh config/server.properties
 
 ---
 
-# 13. Common Kafka Configs
+# 11. Common Kafka Configs
 
 ## Producer
 
@@ -239,7 +256,7 @@ enable.auto.commit=true
 
 ---
 
-# 14. Useful Kafka Commands
+# 12. Useful Kafka Commands
 
 ## Delete topic
 
@@ -273,7 +290,7 @@ bin/kafka-consumer-groups.sh \
 
 ---
 
-# 15. Important Kafka Concepts
+# 13. Important Kafka Concepts
 
 | Concept        | Meaning            |
 | -------------- | ------------------ |
@@ -288,19 +305,28 @@ bin/kafka-consumer-groups.sh \
 
 ---
 
-# 16. Directory Structure You’ll Use Often
+# 14. Directory Structure
+
+### This repo
+
+```text
+src/
+└── cpp/          # C++ samples (librdkafka)
+```
+
+### Kafka broker
 
 ```text
 kafka_2.13-4.2.0/
 ├── bin/
 ├── config/
 ├── libs/
-├── logs/
+└── logs/
 ```
 
 ---
 
-# 17. Most Important Files
+# 15. Most Important Files
 
 | File                            | Purpose          |
 | ------------------------------- | ---------------- |
@@ -312,7 +338,7 @@ kafka_2.13-4.2.0/
 
 ---
 
-# 18. Typical Dev Workflow
+# 16. Typical Dev Workflow
 
 ```text
 Start Kafka
@@ -328,7 +354,7 @@ Observe messages
 
 ---
 
-# 19. Minimal Mental Model
+# 17. Minimal Mental Model
 
 Kafka is basically:
 
@@ -362,7 +388,7 @@ Consumer remembers:
 
 ---
 
-# 20. Common Errors
+# 18. Common Errors
 
 ## Broker not running
 
@@ -399,7 +425,7 @@ kill -9 <pid>
 
 ---
 
-# 21. Useful References
+# 19. Useful References
 
 * [Apache Kafka Official Site](https://kafka.apache.org/?utm_source=chatgpt.com)
 * [Kafka Downloads](https://kafka.apache.org/downloads.html?utm_source=chatgpt.com)
